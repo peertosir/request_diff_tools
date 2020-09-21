@@ -1,0 +1,5 @@
+{"handler":"V1 USER1?PAGE=2","diffs":{"username":{"__old":"Ivan","__new":"Igor"}}}
+{"handler":"V2 USER1?PAGE=2","diffs":{"username":{"__old":"Igor","__new":"Ivan"}}}
+{"handler":"V3 USER1?PAGE=2","diffs":{"username__deleted":"Ivan"}}
+{"handler":"V4 USER1?PAGE=2","diffs":{"username__added":"Ivan"}}
+{"handler":"V5 USER1?PAGE=2","diffs":"NO DIFF"}

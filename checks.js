@@ -6,15 +6,24 @@ const makeCheck = (url, url2, method, headers, resultFile) => {
   Promise.all([
     makeRequest(url, method, headers),
     makeRequest(url2, method, headers),
-  ]).then((results) => {
-    const diffResult = diff(results[0], results[1]);
-    const answer =
-      JSON.stringify({
-        handler: url.split('/').slice(-2).join(' ').toUpperCase(),
-        diffs: diffResult ? diffResult : 'NO DIFF',
-      }) + '\n';
-    fs.appendFileSync(resultFile, answer);
-  });
+  ])
+    .then((results) => {
+      const diffResult = diff(results[0], results[1]);
+      const answer =
+        JSON.stringify({
+          handler: url.split('/').slice(-2).join(' ').toUpperCase(),
+          diffs: diffResult ? diffResult : 'NO DIFF',
+        }) + '\n';
+      fs.appendFileSync(resultFile, answer);
+    })
+    .catch((error) => {
+      const errorAnswer =
+        JSON.stringify({
+          handler: url.split('/').slice(-2).join(' ').toUpperCase(),
+          error: error,
+        }) + '\n';
+    });
+  fs.appendFileSync(resultFile, errorAnswer);
 };
 
 const makeRequest = (url, method, headers) => {
