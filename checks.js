@@ -22,8 +22,8 @@ const makeCheck = (url, url2, method, headers, resultFile) => {
           handler: url.split('/').slice(-2).join(' ').toUpperCase(),
           error: error,
         }) + '\n';
+      fs.appendFileSync(resultFile, errorAnswer);
     });
-  fs.appendFileSync(resultFile, errorAnswer);
 };
 
 const makeRequest = (url, method, headers) => {
